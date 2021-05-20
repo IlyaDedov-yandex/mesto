@@ -13,4 +13,4 @@
 1. Добавть работы с формой
 2. Массивы и функции javascript
 Ссылка на проект:
-https://ilyadedov-yandex.github.io/mesto/
+https://ilyadedov-yandex.github.io/mesto/index.html
