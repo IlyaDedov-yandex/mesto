@@ -14,14 +14,14 @@
     overflow: hidden;
     cursor: default;
 }
-@media screen and (min-width: 596px) and (max-width: 893px){
+@media screen and (min-width: 598px) and (max-width: 896px){
     .profile__title{
         font-size: 33px;
         line-height: 33px;
     }
 }
 
-@media screen and (max-width: 595px){
+@media screen and (max-width: 597px){
     .profile__title{
         max-width: 189px;
         font-size: 27px;

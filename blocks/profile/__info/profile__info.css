@@ -9,7 +9,7 @@
     column-gap: 18px;
 }
 
-@media screen and (max-width: 595px){
+@media screen and (max-width: 597px){
     .profile__info{
         row-gap: 14px;
         column-gap: 10px;

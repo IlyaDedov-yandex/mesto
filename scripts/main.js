@@ -1,18 +1,19 @@
-let openPopup = document.querySelector('.profile__edit-button');
+let openPopupBtn = document.querySelector('.profile__edit-button');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let popup = document.querySelector('body > .popup');
-let formElement = popup.querySelector('.popup__container');
-let closePopup = formElement.querySelector('.popup__close-btn');
-let popupName = formElement.querySelector('.popup__input_type_name');
-let popupAbout = formElement.querySelector('.popup__input_type_about');
-let likeBtns = document.querySelectorAll('.element__like-btn');
+let closePopup = popup.querySelector('.popup__close-btn');
+let formElement = popup.querySelector('.form');
+let popupName = formElement.querySelector('.form__input_type_name');
+let popupAbout = formElement.querySelector('.form__input_type_about');
 
-openPopup.addEventListener('click', function () {
+function openPopup() {
     popup.classList.add('popup_opened');
     popupName.value = profileTitle.textContent;
     popupAbout.value = profileSubtitle.textContent;
-})
+};
+
+openPopupBtn.addEventListener('click', openPopup);
 closePopup.addEventListener('click', function () {
     popup.classList.remove('popup_opened');
 })
@@ -23,11 +24,3 @@ function formSubmitHandler(evt) {
     popup.classList.remove('popup_opened');
 }
 formElement.addEventListener('submit', formSubmitHandler);
-
-function toggleClass(event) {
-    console.log(event);
-    event.target.classList.toggle('element__like-btn_active');
-}
-likeBtns.forEach(function (likeBtn) {
-    likeBtn.addEventListener('click', toggleClass);
-});

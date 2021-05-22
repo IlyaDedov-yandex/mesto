@@ -1,4 +1,4 @@
-.popup__input{
+.form__input{
     display: block;
     max-width: 358px;
     margin: 0 auto;
@@ -18,7 +18,7 @@
     overflow: hidden;
 }
 @media screen and (max-width: 595px){
-    .popup__input{
+    .form__input{
         max-width: 238px;
         width: 238px;
     }

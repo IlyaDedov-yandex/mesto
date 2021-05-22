@@ -5,13 +5,13 @@
     margin: 0 auto;
 }
 
-@media screen and (min-width: 596px) and (max-width: 893px){
+@media screen and (min-width: 598px) and (max-width: 896px){
     .footer{
         max-width: 581px;
     }
 }
 
-@media screen and (max-width: 595px){
+@media screen and (max-width: 597px){
     .footer{
         padding-top: 48px;
         padding-bottom: 36px;

@@ -13,7 +13,7 @@
     overflow: hidden;
     cursor: default;
 }
-@media screen and (max-width: 595px){
+@media screen and (max-width: 597px){
     .profile__subtitle{
         align-self: center;
         justify-self: center;
