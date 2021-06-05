@@ -43,7 +43,7 @@ function createCard(name, link) {
         figureImage.src = image.src;
         figureImage.alt = `Изображение ${caption.textContent}`;
         figureCaption.innerText = caption.textContent;
-        toggleOpen(popupImage);
+        openPopup(popupImage);
     });
     return htmlElement;
 }
@@ -51,29 +51,31 @@ function createCard(name, link) {
 function addCard(card) {
     listCards.prepend(card);
 }
-
-function toggleOpen(modal) {
-    modal.classList.toggle('popup_opened');
+function openPopup(modal) {
+    modal.classList.add('popup_opened');
+}
+function closePopup(modal) {
+    modal.classList.remove('popup_opened');
 }
 
 function popupEditOpen(evt) {
     console.log(evt);
     editFormName.value = profileTitle.textContent;
     editFormAbout.value = profileSubtitle.textContent;
-    toggleOpen(popupEdit);
+    openPopup(popupEdit);
 }
 
 function popupNewCardOpen(evt) {
     newCardFormName.value = '';
     NewCardFormLink.value = '';
-    toggleOpen(popupNewCard);
+    openPopup(popupNewCard);
 }
 
 function popupEditSubmitHandler(evt) {
     evt.preventDefault();
     profileTitle.textContent = editFormName.value;
     profileSubtitle.textContent = editFormAbout.value;
-    toggleOpen(popupEdit);
+    closePopup(popupEdit);
 }
 function popupNewCardSubmitHandler(evt) {
     evt.preventDefault();
@@ -81,7 +83,7 @@ function popupNewCardSubmitHandler(evt) {
     const subtitle = NewCardFormLink.value;
     const newCard = createCard(title, subtitle);
     addCard(newCard);
-    toggleOpen(popupNewCard);
+    closePopup(popupNewCard);
 }
 
 popupEditForm.addEventListener('submit', popupEditSubmitHandler);
@@ -92,6 +94,6 @@ openPopupAddBtn.addEventListener('click', popupNewCardOpen);
 popups.forEach((item => {
     item.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup__close-btn'))
-            toggleOpen(item);
+            closePopup(item);
     })
 }))
