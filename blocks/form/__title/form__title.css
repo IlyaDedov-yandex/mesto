@@ -3,7 +3,7 @@
     margin: 0 auto;
     margin-top: 34px;
     padding: 0;
-    padding-bottom: 19px;
+    padding-bottom: 48px;
     font-family: "Inter", Arial, sans-serif;
     font-style: normal;
     font-weight: 900;
@@ -13,7 +13,7 @@
 }
 @media screen and (max-width: 595px){
     .form__title{
-        padding-bottom: 45px;
+        padding-bottom: 70px;
         margin-top: 25px;
         max-width: 238px;
         width: 238px;
