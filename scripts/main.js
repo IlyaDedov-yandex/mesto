@@ -94,7 +94,6 @@ function popupNewCardSubmitHandler(evt) {
 }
 function keyHandler(evt) {
     if (evt.key === "Escape") {
-        console.log('Escape');
         popups.forEach((item) => {
             closePopup(item);
         })
