@@ -1,12 +1,15 @@
-import { popupImage, figureImage, figureCaption, openPopup } from "./index.js";
 export default class Card {
-    constructor(name, link, cardSelector) {
+    constructor(figureData, handleClick, name, link, cardSelector) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
+        this._figureImage = figureData.figureImage;
+        this._figureCaption = figureData.figureCaption;
+        this._popupImage = figureData.popupImage;
+        this._handleClick = handleClick;
     }
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
         return cardElement;
     }
     _setEventListeners() {
@@ -21,22 +24,23 @@ export default class Card {
         });
     }
     _handelDeleteClick(evt) {
-        evt.target.closest('.element').remove();
+        this._element.remove();
     }
     _handelLikeClick(evt) {
         evt.target.classList.toggle('element__like-btn_active');
     }
     _handleImageClick() {
-        figureImage.src = this._link;
-        figureImage.alt = `Изображение ${this._name}`;
-        figureCaption.innerText = this._name;
-        openPopup(popupImage);
+        this._figureImage.src = this._link;
+        this._figureImage.alt = `Изображение ${this._name}`;
+        this._figureCaption.innerText = this._name;
+        this._handleClick(this._popupImage);
     }
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = `Изображение ${this._name}`;
+        const imageElement = this._element.querySelector('.element__image');
+        imageElement.src = this._link;
+        imageElement.alt = `Изображение ${this._name}`;
         this._element.querySelector('.element__caption').innerText = this._name;
         return this._element;
     }

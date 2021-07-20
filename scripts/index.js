@@ -1,6 +1,10 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { initialCards } from "./initial-cards.js"
+import { initialCards } from "./initial-cards.js";
+const popupImage = document.querySelector('.popup_type_image');
+const figureImage = popupImage.querySelector('.figure__image');
+const figureCaption = popupImage.querySelector('.figure__caption');
+const figureData = { popupImage: popupImage, figureImage: figureImage, figureCaption: figureCaption };
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupNewCard = document.querySelector('.popup_type_new-card');
@@ -10,14 +14,12 @@ const editFormAbout = popupEditForm.querySelector('.form__input_type_about');
 const popupNewCardForm = popupNewCard.querySelector('.form');
 const newCardFormName = popupNewCardForm.querySelector('.form__input_type_name');
 const newCardFormLink = popupNewCardForm.querySelector('.form__input_type_about');
-export const popupImage = document.querySelector('.popup_type_image');
-export const figureImage = popupImage.querySelector('.figure__image');
-export const figureCaption = popupImage.querySelector('.figure__caption');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const openPopupBtn = document.querySelector('.profile__edit-button');
 const openPopupAddBtn = document.querySelector('.profile__add-button');
 const listCards = document.querySelector('.elements__list');
+const escapeKey = "Escape";
 const validationSettings = {
     inputSelector: '.form__input',
     submitButtonSelector: '.form__save-btn',
@@ -32,10 +34,13 @@ newCardFormValidator.enableValidation();
 renderCards();
 function renderCards() {
     initialCards.reverse().forEach(item => {
-        const newCard = new Card(item.name, item.link, '.card-template');
-        const cardElement = newCard.generateCard();
-        addCard(cardElement);
+        newCard(item.name, item.link, '.card-template');
     });
+}
+function newCard(title, subtitle, cardTemplate) {
+    const newCard = new Card(figureData, openPopup, title, subtitle, cardTemplate);
+    const cardElement = newCard.generateCard();
+    addCard(cardElement);
 }
 function addCard(card) {
     listCards.prepend(card);
@@ -69,13 +74,12 @@ function handleNewCardFormSubmit(evt) {
     evt.preventDefault();
     const title = newCardFormName.value;
     const subtitle = newCardFormLink.value;
-    const newCard = new Card(title, subtitle, '.card-template');
-    const cardElement = newCard.generateCard();
-    addCard(cardElement);
+    newCard(title, subtitle, '.card-template');
     closePopup(popupNewCard);
 }
 function handleKeyboard(evt) {
     const openedPopup = document.querySelector('.popup_opened');
+
     if (evt.key === "Escape") {
         closePopup(openedPopup);
     }
