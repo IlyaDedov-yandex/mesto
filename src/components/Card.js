@@ -1,11 +1,9 @@
 export default class Card {
-    constructor(figureData, handleClick, name, link, cardSelector) {
-        this._name = name;
-        this._link = link;
+    constructor(handleClick, item, cardSelector) {
+        this._item = item;
+        this._name = item.name;
+        this._link = item.link;
         this._cardSelector = cardSelector;
-        this._figureImage = figureData.figureImage;
-        this._figureCaption = figureData.figureCaption;
-        this._popupImage = figureData.popupImage;
         this._handleClick = handleClick;
     }
     _getTemplate() {
@@ -13,8 +11,8 @@ export default class Card {
         return cardElement;
     }
     _setEventListeners() {
-        this._element.querySelector('.element__delete-btn').addEventListener('click', (evt) => {
-            this._handelDeleteClick(evt);
+        this._element.querySelector('.element__delete-btn').addEventListener('click', () => {
+            this._handelDeleteClick();
         });
         this._element.querySelector('.element__like-btn').addEventListener('click', (evt) => {
             this._handelLikeClick(evt);
@@ -23,17 +21,14 @@ export default class Card {
             this._handleImageClick();
         });
     }
-    _handelDeleteClick(evt) {
+    _handelDeleteClick() {
         this._element.remove();
     }
     _handelLikeClick(evt) {
         evt.target.classList.toggle('element__like-btn_active');
     }
     _handleImageClick() {
-        this._figureImage.src = this._link;
-        this._figureImage.alt = `Изображение ${this._name}`;
-        this._figureCaption.innerText = this._name;
-        this._handleClick(this._popupImage);
+        this._handleClick(this._item);
     }
     generateCard() {
         this._element = this._getTemplate();
