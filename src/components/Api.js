@@ -8,7 +8,7 @@ export default class Api {
             headers: this._headers
         })
             .then(this._checkResponse)
-            .catch((err) => { err => this._showErrorMessage(err) });
+            .catch((err) => { this._showErrorMessage(err) });
     };
 
     getInitialCards() {
