@@ -16,11 +16,14 @@
     </header>
     <main class="main">
         <section class="profile">
-            <img class="profile__avatar" src="<%=require('./images/profile/__avatar/profile__avatar.jpg')%>"
-                alt="Изображение автора">
+            <div class="profile__group">
+                <img class="profile__avatar" src="<%=require('./images/profile/__avatar/profile__avatar-loading.gif')%>"
+                    alt="Изображение автора">
+                <div class="profile__avatar-edit"></div>
+            </div>
             <div class="profile__info">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <p class="profile__subtitle">Исследователь океана</p>
+                <h1 class="profile__title"></h1>
+                <p class="profile__subtitle"></p>
                 <button type="button" class="profile__edit-button" aria-label="Изменить профайл"></button>
             </div>
             <button type="button" class="profile__add-button" aria-label="Добавить профайл"></button>
@@ -71,22 +74,47 @@
             </form>
         </div>
     </div>
+    <div class="popup popup_type_delete">
+        <div class="popup__container">
+            <button type="button" class="popup__close-btn" aria-label="Закрыть попап"></button>
+            <form class="form" name="delete-form" novalidate>
+                <h2 class="form__title">Вы уверены</h2>
+                <button type="submit" class="form__save-btn">Да</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button type="button" class="popup__close-btn" aria-label="Закрыть попап"></button>
+            <form class="form" name="avatar-form" novalidate>
+                <h2 class="form__title">Обновить аватар</h2>
+                <label class="form__field">
+                    <input type="url" name="avatar-link" placeholder="ссылка на аватар"
+                        class="form__input form__input_type_link" id="card-link-input" required>
+                    <span class="form__input-error card-link-input-error"></span>
+                </label>
+                <button type="submit" class="form__save-btn">Сохранить</button>
+            </form>
+        </div>
+    </div>
     <div class="popup popup_type_image">
         <figure class="figure">
             <button type="button" class="popup__close-btn" aria-label="Закрыть попап"></button>
-            <img class="figure__image" src="<%=require('./images/element/__image/element__image-vasiliy-blazhen.jpg')%>"
+            <img class="figure__image" src="<%=require('./images/element/__image/element__image-loading.gif')%>"
                 alt="Василий блаженный">
             <figcaption class="figure__caption"></figcaption>
         </figure>
     </div>
     <template class="card-template">
         <li class="element">
-            <img class="element__image"
-                src="<%=require('./images/element/__image/element__image-vasiliy-blazhen.jpg')%>">
+            <img class="element__image" src="<%=require('./images/element/__image/element__image-loading.gif')%>">
             <button type="button" class="element__delete-btn" aria-label="Удалить карточку"></button>
             <div class="element__caption-container">
                 <h2 class="element__caption"></h2>
-                <button type="button" class="element__like-btn" aria-label="Поставить лайк"></button>
+                <div>
+                    <button type="button" class="element__like-btn" aria-label="Поставить лайк"></button>
+                    <p class="element__like-counter"></p>
+                </div>
             </div>
         </li>
     </template>
