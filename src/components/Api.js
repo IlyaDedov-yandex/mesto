@@ -8,7 +8,6 @@ export default class Api {
             headers: this._headers
         })
             .then(this._checkResponse)
-            .catch((err) => { this._showErrorMessage(err) });
     };
 
     getInitialCards() {
@@ -16,7 +15,6 @@ export default class Api {
             headers: this._headers
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
 
     editProfileInfo(data) {
@@ -26,7 +24,6 @@ export default class Api {
             body: JSON.stringify(data)
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
     createNewCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
@@ -35,7 +32,6 @@ export default class Api {
             body: JSON.stringify(data)
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
@@ -43,7 +39,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
     likeCard(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
@@ -51,7 +46,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
     dislikeCard(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
@@ -59,7 +53,6 @@ export default class Api {
             headers: this._headers,
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
     }
     editAvatar(link) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
@@ -70,10 +63,6 @@ export default class Api {
             })
         })
             .then(this._checkResponse)
-            .catch(err => this._showErrorMessage(err))
-    }
-    _showErrorMessage(err) {
-        console.log(err);
     }
     _checkResponse(res) {
         if (!res.ok) {

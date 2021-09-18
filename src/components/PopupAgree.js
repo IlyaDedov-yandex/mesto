@@ -9,7 +9,6 @@ export default class PopupAgree extends Popup {
     _callHandleFormSubmit(evt) {
         evt.preventDefault();
         this._handleFormSubmit();
-        this.close();
     }
     setEventListeners() {
         super.setEventListeners();

@@ -53,7 +53,10 @@ function createCard(item, cardSelector) {
                 handleFormSubmit: () => {
                     api
                         .deleteCard(cardId)
-                        .then(() => { card.deleteCard() })
+                        .then(() => {
+                            card.deleteCard();
+                            popupDelete.close();
+                        })
                         .catch((err) => {
                             console.log(err);
                         });
@@ -64,7 +67,7 @@ function createCard(item, cardSelector) {
         popupDelete.setEventListeners();
     }
     function handleLikeClick(cardId) {
-        if (this._element.querySelector('.element__like-btn').classList.contains('element__like-btn_active')) {
+        if (card.isLikeActive()) {
             api
                 .dislikeCard(cardId)
                 .then(res => { card.dislikeCard(res.likes.length) })
@@ -101,6 +104,7 @@ const popupWithProfile = new PopupWithForm(
                 .editProfileInfo({ name: inputValues['profile-name'], about: inputValues['profile-about'] })
                 .then(data => {
                     userInfo.setUserInfo(data.name, data.about);
+                    popupWithProfile.close();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -122,6 +126,7 @@ const popupAddImage = new PopupWithForm(
                 .then(data => {
                     const cardElement = createCard(data, '.card-template');
                     cardsList.addItem(cardElement);
+                    popupAddImage.close();
                 })
                 .catch((err) => {
                     console.log(err);
@@ -141,7 +146,10 @@ const popupAvatarEdit = new PopupWithForm(
             changeBtnState(popupAvatarForm, 'Сохранение...');
             api
                 .editAvatar(inputValues['avatar-link'])
-                .then(res => { userInfo.setUserInfo(res.name, res.about, res.avatar); })
+                .then(res => {
+                    userInfo.setUserInfo(res.name, res.about, res.avatar);
+                    popupAvatarEdit.close();
+                })
                 .catch((err) => {
                     console.log(err);
                 })

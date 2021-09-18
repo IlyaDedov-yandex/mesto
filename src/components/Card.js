@@ -42,6 +42,12 @@ export default class Card {
         }
         return false;
     }
+    isLikeActive() {
+        if (this._element.querySelector('.element__like-btn').classList.contains('element__like-btn_active')) {
+            return true;
+        }
+        return false;
+    }
     generateCard(id) {
         this._element = this._getTemplate();
 

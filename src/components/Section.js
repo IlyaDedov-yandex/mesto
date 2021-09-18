@@ -5,7 +5,7 @@ export default class Section {
         this._api = api;
     }
     renderItems(items) {
-        items.forEach(item => this._renderer(item));
+        items.reverse().forEach(item => this._renderer(item));
     }
     saveItem(data) {
         return this._api.createNewCard(data);
